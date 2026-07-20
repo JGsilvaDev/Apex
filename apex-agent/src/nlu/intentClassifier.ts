@@ -1,36 +1,28 @@
-import { ApexIntent } from "../types/intent";
+import {
+  ApexIntent
+} from "../types/intent";
+
+import {
+  intentRegistry
+} from "./registry";
 
 export function classifyIntent(
-  command: string
-): ApexIntent {
+  command:string
+):ApexIntent {
 
   const text =
     command.toLowerCase();
 
-  if (
-    /(criar|crie|cria).*(pasta)/.test(text)
-  ) {
+  const found =
+    intentRegistry.find(
+      item =>
+        item.match(text)
+    );
 
-    return "CREATE_FOLDER";
+  if(found){
 
-  }
-
-  if (
-    text.includes("projeto")
-  ) {
-
-    return "PROJECT_ANALYSIS";
+    return found.intent;
 
   }
-
-  if (
-    /(olá|ola|oi|bom dia|boa tarde|boa noite)/.test(text)
-  ) {
-
-    return "GREETING";
-
-  }
-
   return "UNKNOWN";
-
 }

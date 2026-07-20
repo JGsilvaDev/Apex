@@ -3,23 +3,38 @@ export type LocationEntity =
   | "DESKTOP"
   | "HOME";
 
-
 export function extractLocation(
   text:string
 ):LocationEntity{
 
   if(
-    text.includes("documentos")
+    [
+      "documentos",
+      "documento",
+      "meus documentos"
+    ]
+    .some(
+      item =>
+        text.includes(item)
+    )
   ){
     return "DOCUMENTS";
   }
 
   if(
-    text.includes("desktop") ||
-    text.includes("área de trabalho")
+    [
+      "desktop",
+      "área de trabalho",
+      "area de trabalho"
+    ]
+    .some(
+      item =>
+        text.includes(item)
+    )
   ){
     return "DESKTOP";
   }
+
   return "HOME";
 
 }
