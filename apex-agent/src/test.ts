@@ -1,11 +1,7 @@
-import {
-  apexAgent
-} from "./index";
+import { think } from "./brain/brain";
 
-console.log(
-
-  apexAgent(
-    "Apex, crie uma pasta chamada Projetos nos documentos"
-  )
-
+const response = think(
+  "Apex, crie uma pasta chamada Fotos nos documentos"
 );
+
+console.log(response);

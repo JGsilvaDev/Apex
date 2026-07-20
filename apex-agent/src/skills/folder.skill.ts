@@ -4,41 +4,49 @@ import {
 
 
 import {
-  parseCommand
-} from "../parser/commandParser";
+  parseFolderCommand
+} from "../parser/folder.parser";
 
 
 
 export const folderSkill:ApexSkill = {
-  name:
-  "folder",
 
-  priority: 100,
+  name:"folder",
+
+  priority:100,
 
   triggers:[
+
     "criar pasta",
+
     "crie uma pasta",
+
     "cria pasta"
+
   ],
 
-  execute(
-    command:string
-  ){
-    const parsed =
-      parseCommand(
+  execute(command){
+
+    const folder =
+      parseFolderCommand(
         command
       );
 
     return {
+
       message:
-        `Entendido. Criando a pasta ${parsed.parameters.name}.`,
+        `Entendido. Criando a pasta ${folder.name}.`,
 
       action:{
-        type:
-        parsed.action,
-        payload:
-        parsed.parameters
+
+        type:"CREATE_FOLDER",
+
+        payload:folder
+
       }
+
     };
+
   }
+
 };
