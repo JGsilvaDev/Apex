@@ -2,24 +2,49 @@ import {
   understand
 } from "../nlu";
 
+
 import {
   createPlan
 } from "./planner";
+
 
 export function think(
   command:string
 ){
 
-  const intent =
-    understand(command);
+  const result =
+    understand(
+      command
+    );
+
 
   const action =
-    createPlan(intent);
+    createPlan(
+      result
+    );
+
 
   return {
 
     message:
-      "Plano criado.",
+      action
+      ?
+      "Entendido. Preparando execução."
+      :
+      "Não encontrei uma ação.",
+
+
+    intent:
+      result.intent,
+
+
+    confidence:
+      result.confidence,
+
+
+    entities:
+      result.entities,
+
 
     action
 

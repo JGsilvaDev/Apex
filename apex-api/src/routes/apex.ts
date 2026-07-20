@@ -7,7 +7,7 @@ import {
 } from "../services/apexCore.js";
 
 import {
-  apexAgent
+  think
 } from "apex-agent";
 
 const router =
@@ -32,7 +32,7 @@ router.post(
       );
 
       const agentResponse =
-        apexAgent(
+        think(
           command
         );
 

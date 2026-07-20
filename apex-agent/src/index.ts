@@ -1,13 +1,14 @@
-import {
-  processCommand
-} from "./brain/router";
+export {
+  think
+} from "./brain/brain";
 
-export function apexAgent(
-  command:string
-){
 
-  return processCommand(
-    command
-  );
+export {
+  understand
+} from "./nlu";
 
-}
+
+export {
+  classifyIntent
+} from "./nlu/intentClassifier";
+
