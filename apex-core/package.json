@@ -1,0 +1,16 @@
+{
+  "name": "apex-core",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "ts-node-dev src/index.ts",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  }
+}

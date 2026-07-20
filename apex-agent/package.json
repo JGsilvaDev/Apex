@@ -1,0 +1,21 @@
+{
+  "name": "apex-agent",
+
+  "version": "1.0.0",
+
+  "type": "commonjs",
+
+  "scripts": {
+    "dev": "ts-node-dev src/index.ts",
+    "build": "tsc"
+  },
+
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  },
+
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts"
+}
