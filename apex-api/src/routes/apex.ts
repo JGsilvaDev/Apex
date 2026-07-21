@@ -3,25 +3,27 @@ import {
 } from "express";
 
 import {
-  sendToCore
-} from "../services/apexCore.js";
-
-import {
   think
 } from "apex-agent";
+
+import {
+  executePlan
+} from "apex-core";
 
 const router =
   Router();
 
 router.post(
+
   "/command",
 
-  async(
+  async (
     req,
     res
-  )=>{
+  ) => {
 
     try {
+
       const {
         command
       } = req.body;
@@ -36,44 +38,47 @@ router.post(
           command
         );
 
-      if(
-        agentResponse.action
-      ){
-
-        const coreResponse =
-        await sendToCore(
-          agentResponse.action
+      const execution =
+        await executePlan(
+          agentResponse.plan
         );
 
-        return res.json({
-          message:
+      return res.json({
+
+        message:
           agentResponse.message,
-          action:
-          agentResponse.action,
-          core:
-          coreResponse
-        });
 
-      }
+        understanding:
+          agentResponse.understanding,
 
-      res.json(
-        agentResponse
-      );
+        plan:
+          agentResponse.plan,
+
+        execution
+
+      });
 
     }
-    catch(error){
+
+    catch (error) {
+
       console.error(
         error
       );
 
-      res.status(500)
-      .json({
-        message:
-          "Erro ao comunicar com Apex Core"
+      return res
+        .status(500)
+        .json({
 
-      });
+          message:
+            "Erro ao comunicar com Apex Core"
+
+        });
+
     }
+
   }
+
 );
 
 export default router;

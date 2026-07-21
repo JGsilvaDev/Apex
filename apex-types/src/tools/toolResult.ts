@@ -1,9 +1,17 @@
+import {
+  ExecutionContext
+} from "../execution/executionContext";
+
 export interface ToolResult {
 
-  success:boolean;
+  success: boolean;
 
-  message:string;
+  message: string;
 
-  data?:unknown;
+  data?: Record<string, unknown>;
+
+  logs?: string[];
+
+  contextUpdates?: Partial<ExecutionContext>;
 
 }

@@ -2,27 +2,22 @@ import {
   normalizeCommand
 } from "./normalizer";
 
-
 import {
   classifyIntent
 } from "./intentClassifier";
-
 
 import {
   extractEntities
 } from "./entityExtractor";
 
-
 import {
-  IntentResult
-} from "../types/intent";
-
+  Understanding
+} from "apex-types";
 
 
 export function understand(
   command:string
-):IntentResult{
-
+):Understanding{
 
   const normalized =
     normalizeCommand(
@@ -44,13 +39,10 @@ export function understand(
 
 
   return {
-
+    originalCommand: command,
     intent,
-
-    confidence:0.95,
-
+    confidence: 0.95,
     entities
-
   };
 
 

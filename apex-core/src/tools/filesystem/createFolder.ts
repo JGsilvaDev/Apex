@@ -3,6 +3,7 @@ import path from "path";
 import {
   ApexAction,
   CreateFolderPayload,
+  ExecutionContext,
 } from "apex-types";
 
 import {
@@ -18,7 +19,8 @@ import {
 } from "../../executor/filesystem.executor";
 
 export async function createFolder(
-  action: ApexAction<CreateFolderPayload>
+  action: ApexAction<CreateFolderPayload>,
+  context: ExecutionContext
 ) {
 
   const payload =
@@ -34,14 +36,14 @@ export async function createFolder(
       payload.name
     );
 
-  return executeFilesystemAction({
-
-    ...action,
-
-    payload: {
-      path: folderPath,
+  return executeFilesystemAction(
+    {
+      ...action,
+      payload: {
+        path: folderPath,
+      },
     },
-
-  });
+    context
+  );
 
 }

@@ -8,7 +8,7 @@ export async function sendToAgent(
 ){
 
   const response =
-    await think(
+    think(
       command
     );
 

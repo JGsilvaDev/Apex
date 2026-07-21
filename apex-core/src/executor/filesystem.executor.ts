@@ -2,19 +2,17 @@ import * as fs from "fs/promises";
 
 import {
     ApexAction,
-    CreateFolderExecutionPayload
+    CreateFolderExecutionPayload,
+    ExecutionContext
 } from "apex-types";
 
 export async function executeFilesystemAction(
-
-    action: ApexAction<CreateFolderExecutionPayload>
-
+    action: ApexAction<CreateFolderExecutionPayload>,
+    context: ExecutionContext
 ){
 
     switch(action.type){
-
         case "CREATE_FOLDER":
-
             await fs.mkdir(
                 action.payload.path,
                 {
@@ -22,18 +20,27 @@ export async function executeFilesystemAction(
                 }
             );
 
-            return{
+            return {
 
                 success:true,
 
-                message:`Pasta criada em ${action.payload.path}`
+                message:
+                    "Pasta criada com sucesso.",
+
+                data:{
+                    path:
+                        action.payload.path
+                },
+
+                logs:[
+                    `Diretório criado: ${action.payload.path}`
+                ]
 
             };
 
         default:
-
-            throw new Error("Filesystem action desconhecida.");
-
+            throw new Error(
+                "Filesystem action desconhecida."
+            );
     }
-
 }

@@ -1,52 +1,37 @@
 import {
+  AgentResponse,
+} from "apex-types";
+
+import {
   understand
 } from "../nlu";
-
 
 import {
   createPlan
 } from "./planner";
 
-
 export function think(
   command:string
-){
+): AgentResponse {
 
-  const result =
-    understand(
-      command
-    );
+  const understanding =
+    understand(command);
 
-
-  const action =
+  const plan =
     createPlan(
-      result
+      understanding
     );
-
 
   return {
 
     message:
-      action
-      ?
-      "Entendido. Preparando execução."
-      :
-      "Não encontrei uma ação.",
+      plan?.actions.length > 0
+        ? "Entendido. Preparando execução."
+        : "Não encontrei uma ação.",
 
+    understanding,
 
-    intent:
-      result.intent,
-
-
-    confidence:
-      result.confidence,
-
-
-    entities:
-      result.entities,
-
-
-    action
+    plan
 
   };
 

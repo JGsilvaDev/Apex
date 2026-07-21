@@ -1,39 +1,47 @@
 import {
-  IntentResult
-} from "../types/intent";
+  ActionPlan,
+  ApexAction,
+  ActionTypes
+} from "apex-types";
 
-import {
-  ApexAction
-} from "../types/action";
+import { Understanding } from "apex-types";
 
 export function createPlan(
-  result: IntentResult
-): ApexAction | null {
+  understanding: Understanding
+): ActionPlan {
 
-  switch(result.intent){
+  const actions: ApexAction[] = [];
+
+  switch (understanding.intent) {
 
     case "CREATE_FOLDER":
 
-      return {
+      actions.push({
 
-        type:"CREATE_FOLDER",
+        type: ActionTypes.CREATE_FOLDER,
 
-        payload:result.entities
+        payload: {
 
-      };
+          name: understanding.entities.name,
 
-    case "PROJECT_ANALYSIS":
+          location: understanding.entities.location
 
-      return {
+        }
 
-        type:"PROJECT_ANALYSIS"
+      });
 
-      };
-
-    default:
-
-      return null;
+      break;
 
   }
+
+  return {
+
+    id: crypto.randomUUID(),
+
+    goal: "Executar comando",
+
+    actions
+
+  };
 
 }

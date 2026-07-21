@@ -100,23 +100,42 @@ export default function Home() {
         ]
       );
 
-      if (response.action) {
+      if(response.execution){
 
-        const payload =
-          Object.entries(response.action.payload ?? {})
+        const execution =
+          response.execution;
+
+
+        const steps =
+          execution.steps
             .map(
-              ([key, value]) => `${key}: ${value}`
+              (step: {
+                action: {
+                  type: string;
+                };
+                message: string;
+              }) =>
+                `${step.action.type}: ${step.message}`
             )
             .join("\n");
+
 
         setMessages(
           current => [
             ...current,
             {
-              id: uuid(),
-              type: "ACTION",
+              id:
+                uuid(),
+
+              type:
+                "ACTION",
+
               message:
-                `${response.action.type}\n${payload}`
+                `
+                  Status: ${execution.status}
+
+                  ${steps}
+                `
             }
           ]
         );
