@@ -16,6 +16,7 @@
     "@fastify/cors": "^11.3.0",
     "apex-agent": "file:../apex-agent",
     "apex-core": "file:../apex-core",
+    "apex-types": "file:../apex-types",
     "axios": "^1.18.1",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",

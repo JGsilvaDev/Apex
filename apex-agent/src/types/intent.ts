@@ -1,8 +1,6 @@
-export type ApexIntent =
-  | "GREETING"
-  | "CREATE_FOLDER"
-  | "PROJECT_ANALYSIS"
-  | "UNKNOWN";
+import {
+  ApexIntent
+} from "apex-types";
 
 export interface IntentResult {
 

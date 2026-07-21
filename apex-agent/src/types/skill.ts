@@ -1,6 +1,6 @@
 import {
   ApexAction
-} from "./action";
+} from "apex-types";
 
 
 export interface SkillResponse {

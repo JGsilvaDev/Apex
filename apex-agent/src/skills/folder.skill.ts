@@ -8,7 +8,6 @@ import {
 } from "../parser/folder.parser";
 
 
-
 export const folderSkill:ApexSkill = {
 
   name:"folder",

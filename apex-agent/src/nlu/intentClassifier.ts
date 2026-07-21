@@ -1,6 +1,6 @@
 import {
   ApexIntent
-} from "../types/intent";
+} from "apex-types";
 
 import {
   intentRegistry
