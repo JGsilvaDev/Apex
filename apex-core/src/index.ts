@@ -3,14 +3,17 @@ import {
 } from "apex-types";
 
 import {
-  toolRouter
-} from "./router/toolRouter";
+  toolRegistry
+} from "./registry/toolRegistry";
+
+import "./tools/registerTools";
+
 
 export async function apexCore(
-  action: ApexAction
-) {
+  action:ApexAction
+){
 
-  return await toolRouter(
+  return toolRegistry.execute(
     action
   );
 

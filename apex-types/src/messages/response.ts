@@ -1,6 +1,6 @@
-import { ApexIntent } from "./intent";
-import { ApexAction } from "./action";
-import { ApexEntities } from "./entity";
+import { ApexIntent } from "../intents/intent";
+import { ApexAction } from "../actions/action";
+import { ApexEntities } from "../entity";
 
 export interface ApexResponse {
 
