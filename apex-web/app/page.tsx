@@ -99,21 +99,28 @@ export default function Home() {
           }
         ]
       );
-      // Caso exista uma ação
-      if(response.action){
+
+      if (response.action) {
+
+        const payload =
+          Object.entries(response.action.payload ?? {})
+            .map(
+              ([key, value]) => `${key}: ${value}`
+            )
+            .join("\n");
+
         setMessages(
           current => [
             ...current,
             {
-              id:
-                uuid(),
-              type:
-                "ACTION",
+              id: uuid(),
+              type: "ACTION",
               message:
-                `Action detected: ${response.action}`
+                `${response.action.type}\n${payload}`
             }
           ]
         );
+
       }
     }
 

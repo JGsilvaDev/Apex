@@ -1,15 +1,16 @@
 import {
-  executeAction
-} from "./executor/actionRouter";
+  ApexAction
+} from "apex-types";
 
-export * from "./types/action";
-
+import {
+  toolRouter
+} from "./router/toolRouter";
 
 export async function apexCore(
-  action:any
-){
+  action: ApexAction
+) {
 
-  return executeAction(
+  return await toolRouter(
     action
   );
 

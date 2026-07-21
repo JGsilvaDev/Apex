@@ -1,7 +1,7 @@
-export interface ApexAction {
+export interface ApexAction<T = unknown> {
 
   type: string;
 
-  payload?: any;
+  payload: T;
 
 }

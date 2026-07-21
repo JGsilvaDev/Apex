@@ -1,44 +1,39 @@
 import * as fs from "fs/promises";
 
 import {
-  ApexAction
-} from "../types/action";
-
-import {
-  resolvePath
-} from "../utils/pathResolver";
+    ApexAction,
+    CreateFolderExecutionPayload
+} from "apex-types";
 
 export async function executeFilesystemAction(
-  action:ApexAction
+
+    action: ApexAction<CreateFolderExecutionPayload>
+
 ){
 
-  if(
-    action.type === "CREATE_FOLDER"
-  ){
+    switch(action.type){
 
-    const path =
-      resolvePath(
-        action.payload.location,
-        action.payload.name
+        case "CREATE_FOLDER":
 
-      );
+            await fs.mkdir(
+                action.payload.path,
+                {
+                    recursive:true
+                }
+            );
 
-    await fs.mkdir(
-      path,
-      {
-        recursive:true
-      }
-    );
+            return{
 
-    return {
-      message:
-      `Pasta criada em ${path}`
-    };
-  }
+                success:true,
 
-  return {
-    message:
-    "Ação não reconhecida."
-  };
+                message:`Pasta criada em ${action.payload.path}`
+
+            };
+
+        default:
+
+            throw new Error("Filesystem action desconhecida.");
+
+    }
 
 }
