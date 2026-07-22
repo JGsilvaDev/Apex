@@ -3,7 +3,8 @@ import {
 } from "express";
 
 import {
-  think
+  think,
+  generateResponse
 } from "apex-agent";
 
 import {
@@ -43,10 +44,15 @@ router.post(
           agentResponse.plan
         );
 
+      const finalMessage =
+        generateResponse(
+          execution
+        );
+
       return res.json({
 
         message:
-          agentResponse.message,
+          finalMessage,
 
         understanding:
           agentResponse.understanding,
