@@ -7,13 +7,14 @@
     "build": "tsc"
   },
   "devDependencies": {
-    "@types/node": "^22.15.0",
+    "@types/node": "^22.20.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "apex-types": "file:../apex-types"
+    "apex-types": "file:../apex-types",
+    "crypto": "^1.0.1"
   }
 }

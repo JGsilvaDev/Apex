@@ -1,10 +1,12 @@
+
 import {
   Router
 } from "express";
 
 import {
   think,
-  generateResponse
+  generateResponse,
+  SessionManager
 } from "apex-agent";
 
 import {
@@ -13,6 +15,9 @@ import {
 
 const router =
   Router();
+
+const sessionManager =
+  new SessionManager();
 
 router.post(
 
@@ -26,7 +31,8 @@ router.post(
     try {
 
       const {
-        command
+        command,
+        sessionId
       } = req.body;
 
       console.log(
@@ -34,8 +40,14 @@ router.post(
         command
       );
 
+      const session =
+        sessionManager.getOrCreateSession(
+          sessionId
+        );
+
       const agentResponse =
         think(
+          session,
           command
         );
 
@@ -50,6 +62,9 @@ router.post(
         );
 
       return res.json({
+
+        sessionId:
+          session.id,
 
         message:
           finalMessage,

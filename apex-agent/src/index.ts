@@ -16,3 +16,7 @@ export {
   generateResponse
 } from "./response/responseGenerator";
 
+export * from "./context/ContextManager";
+export * from "./context/Session";
+export * from "./context/SessionManager";
+

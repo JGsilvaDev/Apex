@@ -21,6 +21,8 @@ export * from "./execution/executionStep";
 export * from "./execution/executionReport";
 export * from "./execution/executionContext";
 
+export * from "./context/ConversationContext"
+
 export * from "./entity";
 
 export * from "./memory";
