@@ -12,7 +12,7 @@ import {
 
 import {
   createPlan
-} from "./planner";
+} from "./planner/planner";
 
 export function think(
   session: Session,

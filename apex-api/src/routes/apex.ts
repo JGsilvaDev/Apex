@@ -4,9 +4,8 @@ import {
 } from "express";
 
 import {
-  think,
-  generateResponse,
-  SessionManager
+  processCommand,
+  generateResponse
 } from "apex-agent";
 
 import {
@@ -15,9 +14,6 @@ import {
 
 const router =
   Router();
-
-const sessionManager =
-  new SessionManager();
 
 router.post(
 
@@ -40,20 +36,15 @@ router.post(
         command
       );
 
-      const session =
-        sessionManager.getOrCreateSession(
+      const result =
+        processCommand(
+          command,
           sessionId
-        );
-
-      const agentResponse =
-        think(
-          session,
-          command
         );
 
       const execution =
         await executePlan(
-          agentResponse.plan
+          result.response.plan
         );
 
       const finalMessage =
@@ -64,16 +55,16 @@ router.post(
       return res.json({
 
         sessionId:
-          session.id,
+          sessionId,
 
         message:
           finalMessage,
 
         understanding:
-          agentResponse.understanding,
+          result.response.understanding,
 
         plan:
-          agentResponse.plan,
+          result.response.plan,
 
         execution
 

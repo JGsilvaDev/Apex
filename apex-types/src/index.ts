@@ -15,6 +15,7 @@ export * from "./messages/response";
 export * from "./tools/toolResult";
 
 export * from "./agent/agentResponse";
+export * from "./agent/ProcessCommandResponse";
 
 export * from "./execution/executionStatus";
 export * from "./execution/executionStep";
@@ -22,6 +23,7 @@ export * from "./execution/executionReport";
 export * from "./execution/executionContext";
 
 export * from "./context/ConversationContext"
+
 
 export * from "./entity";
 

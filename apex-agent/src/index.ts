@@ -20,3 +20,5 @@ export * from "./context/ContextManager";
 export * from "./context/Session";
 export * from "./context/SessionManager";
 
+export * from "./services/processCommand";
+
