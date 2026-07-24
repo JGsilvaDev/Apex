@@ -42,6 +42,13 @@ class PlannerRegistry {
 
       return {
         goal: "Nenhum plano encontrado",
+        execution: {
+          requiresConfirmation: false,
+          riskLevel: "LOW",
+          estimatedDuration: 0,
+          allowParallel: false,
+          stopOnError: true
+        },
         actions: []
       };
 

@@ -24,10 +24,13 @@ export function createPlan(
       crypto.randomUUID(),
 
     goal:
-        result.goal,
+      result.goal,
+
+    execution:
+      result.execution,
 
     actions:
-        result.actions
+      result.actions
 
   };
 

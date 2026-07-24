@@ -25,6 +25,7 @@ export * from "./execution/executionContext";
 export * from "./context/ConversationContext";
 
 export * from "./planner/PlannerResult";
+export * from "./planner/PlanMetadata";
 
 export * from "./entity";
 

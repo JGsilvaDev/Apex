@@ -11,6 +11,21 @@ export function createFolderStrategy(
   return {
     goal:
       `Criar pasta ${understanding.entities.name}`,
+
+    execution:{
+
+        requiresConfirmation:false,
+
+        riskLevel:"LOW",
+
+        estimatedDuration:1,
+
+        allowParallel:false,
+
+        stopOnError:true
+
+    },
+    
     actions: [
         {
           type: ActionTypes.CREATE_FOLDER,
