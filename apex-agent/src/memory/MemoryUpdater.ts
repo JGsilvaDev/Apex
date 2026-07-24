@@ -17,11 +17,8 @@ export function updateMemory(
 ){
 
     memoryRegistry.execute(
-
-        report,
-
-        memoryStore
-
+      report,
+      memoryStore
     );
 
 }

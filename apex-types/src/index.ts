@@ -33,3 +33,4 @@ export * from "./entity";
 export * from "./memory/memory";
 export * from "./memory/MemoryKeys";
 export * from "./memory/MemoryResolver";
+export * from "./memory/MemoryTypes";

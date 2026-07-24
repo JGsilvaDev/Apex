@@ -4,6 +4,7 @@ import {
   CreateFolderPayload
 } from "apex-types";
 
+
 import {
   MemoryStore
 } from "../MemoryStore";
@@ -25,20 +26,29 @@ export function createFolderEvent(
 
     );
 
+
   if(!step){
+
     return;
+
   }
+
 
   const payload =
     step.action.payload as CreateFolderPayload;
 
+
   memory.set(
     MemoryKeys.LAST_FOLDER,
     {
+
       name:
         payload.name,
+
       location:
-        payload.location
+        payload.location,
+
+
     }
   );
 
