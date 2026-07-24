@@ -13,9 +13,9 @@ export function createPlan(
   understanding: Understanding
 ): ActionPlan {
 
-  const actions =
+  const result =
     plannerRegistry.execute(
-      understanding
+        understanding
     );
 
   return {
@@ -24,9 +24,10 @@ export function createPlan(
       crypto.randomUUID(),
 
     goal:
-      "Executar comando",
+        result.goal,
 
-    actions
+    actions:
+        result.actions
 
   };
 

@@ -1,13 +1,13 @@
 import {
   ApexIntent,
-  ApexAction,
+  PlannerResult,
   Understanding
 } from "apex-types";
 
 type PlannerStrategy =
   (
     understanding: Understanding
-  ) => ApexAction[];
+  ) => PlannerResult;
 
 class PlannerRegistry {
 
@@ -31,7 +31,7 @@ class PlannerRegistry {
 
   execute(
     understanding: Understanding
-  ): ApexAction[] {
+  ): PlannerResult {
 
     const strategy =
       this.strategies.get(
@@ -40,7 +40,10 @@ class PlannerRegistry {
 
     if (!strategy) {
 
-      return [];
+      return {
+        goal: "Nenhum plano encontrado",
+        actions: []
+      };
 
     }
 

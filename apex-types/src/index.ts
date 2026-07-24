@@ -22,8 +22,9 @@ export * from "./execution/executionStep";
 export * from "./execution/executionReport";
 export * from "./execution/executionContext";
 
-export * from "./context/ConversationContext"
+export * from "./context/ConversationContext";
 
+export * from "./planner/PlannerResult";
 
 export * from "./entity";
 
