@@ -1,0 +1,13 @@
+export enum MemoryKeys {
+
+    LAST_FOLDER = "LAST_FOLDER",
+
+    LAST_FILE = "LAST_FILE",
+
+    LAST_PROJECT = "LAST_PROJECT",
+
+    LAST_COMMAND = "LAST_COMMAND",
+
+    LAST_RESULT = "LAST_RESULT"
+
+}

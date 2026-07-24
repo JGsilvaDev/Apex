@@ -1,0 +1,9 @@
+export enum IntentTypes {
+
+    CREATE_FOLDER = "CREATE_FOLDER",
+
+    CREATE_FILE = "CREATE_FILE",
+
+    OPEN_PROJECT = "OPEN_PROJECT"
+
+}

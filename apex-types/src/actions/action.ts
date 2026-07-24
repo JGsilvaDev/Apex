@@ -1,6 +1,10 @@
+import {
+  ApexActionType
+} from "./actionTypes";
+
 export interface ApexAction<T = unknown> {
 
-  type: string;
+  type: ApexActionType;
 
   payload: T;
 

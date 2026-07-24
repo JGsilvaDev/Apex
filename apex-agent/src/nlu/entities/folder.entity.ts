@@ -1,55 +1,57 @@
 export function extractFolderName(
-  text:string
-):string | null {
+  text: string
+): string | undefined {
+
+  let value =
+    text.toLowerCase();
 
 
-  const patterns = [
-
-    // criar uma pasta chamada Fotos
-    /pasta\s+(?:chamada\s+)?(.+?)(?:\s+(?:nos|no|na|em)\s+.+)?$/i,
-
-    // criar diretório Fotos
-    /diret[oó]rio\s+(?:chamado\s+)?(.+?)(?:\s+(?:nos|no|na|em)\s+.+)?$/i,
-
-    // criar uma área Fotos
-    /área\s+(.+?)(?:\s+(?:nos|no|na|em)\s+.+)?$/i,
-
-    // criar Fotos
-    /crie?\s+(.+?)(?:\s+(?:nos|no|na|em)\s+.+)?$/i,
-
-  ];
-
-  for(
-    const pattern of patterns
-  ){
-
-    const match =
-      text.match(pattern);
-
-    if(match){
-
-      return cleanFolderName(
-        match[1]
-      );
-
-    }
-
-  }
-
-  return null;
-
-}
-
-
-function cleanFolderName(
-  name:string
-){
-  return name
-    .replace(
-      /^(uma|um|a|o)\s+/i,
+  // remove comandos
+  value =
+    value.replace(
+      /^(apex,?\s*)?(criar|crie|cria|fazer|faça|faz|gerar|gere|montar|monte)\s+/i,
       ""
-    )
+    );
 
-    .trim();
+
+  // remove artigos
+  value =
+    value.replace(
+      /^(uma|um|a|o|nova|novo)\s+/i,
+      ""
+    );
+
+
+  // remove palavra pasta
+  value =
+    value.replace(
+      /^pasta\s+/i,
+      ""
+    );
+
+
+  // remove localização
+  value =
+    value.replace(
+      /\s+(em|no|na|nos|nas)\s+(documentos?|desktop|área de trabalho).*$/i,
+      ""
+    );
+
+
+  // remove referência de pai
+  value =
+    value.replace(
+      /\s+dentro\s+(dela|dele|da|do|dessa|desse).*$/i,
+      ""
+    );
+
+
+  value =
+    value.trim();
+
+
+  return value.length
+    ? value
+    : undefined;
 
 }

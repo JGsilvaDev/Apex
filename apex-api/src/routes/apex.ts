@@ -5,7 +5,8 @@ import {
 
 import {
   processCommand,
-  generateResponse
+  generateResponse,
+  updateMemory
 } from "apex-agent";
 
 import {
@@ -42,10 +43,33 @@ router.post(
           sessionId
         );
 
+        console.log(
+          "UNDERSTANDING:",
+          JSON.stringify(
+            result.response.understanding,
+            null,
+            2
+          )
+        );
+
+        console.log(
+          "PLAN:",
+          JSON.stringify(
+            result.response.plan,
+            null,
+            2
+          )
+        );
+
       const execution =
         await executePlan(
           result.response.plan
         );
+
+
+      updateMemory(
+        execution
+      );
 
       const finalMessage =
         generateResponse(
@@ -55,7 +79,7 @@ router.post(
       return res.json({
 
         sessionId:
-          sessionId,
+          result.sessionId,
 
         message:
           finalMessage,

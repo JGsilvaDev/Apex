@@ -1,3 +1,5 @@
+let sessionId: string | undefined;
+
 export async function sendCommand(
   command: string
 ) {
@@ -6,6 +8,7 @@ export async function sendCommand(
     await fetch(
       "http://localhost:3333/apex/command",
       {
+
         method: "POST",
 
         headers: {
@@ -15,20 +18,23 @@ export async function sendCommand(
 
         body: JSON.stringify({
           command,
+          sessionId
         }),
       }
     );
 
-
   if (!response.ok) {
-
     throw new Error(
       "Erro ao comunicar com Apex API"
     );
-
   }
 
+  const data =
+    await response.json();
 
-  return response.json();
+  sessionId =
+    data.sessionId;
+
+  return data;
 
 }

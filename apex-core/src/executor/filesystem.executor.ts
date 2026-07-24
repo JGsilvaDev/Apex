@@ -1,4 +1,5 @@
 import * as fs from "fs/promises";
+import * as path from "path";
 
 import {
     ApexAction,
@@ -6,19 +7,53 @@ import {
     ExecutionContext
 } from "apex-types";
 
+import {
+    resolveLocation
+} from "./locationResolver";
+
+
+
 export async function executeFilesystemAction(
     action: ApexAction<CreateFolderExecutionPayload>,
     context: ExecutionContext
 ){
 
     switch(action.type){
-        case "CREATE_FOLDER":
+
+        case "CREATE_FOLDER": {
+
+            const basePath =
+                resolveLocation(
+                    action.payload.location
+                );
+
+
+            const folderPath =
+                action.payload.parent
+
+                ?
+
+                path.join(
+                    basePath,
+                    action.payload.parent.name,
+                    action.payload.name
+                )
+
+                :
+
+                path.join(
+                    basePath,
+                    action.payload.name
+                );
+
+
             await fs.mkdir(
-                action.payload.path,
+                folderPath,
                 {
                     recursive:true
                 }
             );
+
 
             return {
 
@@ -29,18 +64,24 @@ export async function executeFilesystemAction(
 
                 data:{
                     path:
-                        action.payload.path
+                        folderPath
                 },
 
                 logs:[
-                    `Diretório criado: ${action.payload.path}`
+                    `Diretório criado: ${folderPath}`
                 ]
 
             };
 
+        }
+
+
         default:
+
             throw new Error(
                 "Filesystem action desconhecida."
             );
+
     }
+
 }

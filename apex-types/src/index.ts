@@ -9,6 +9,7 @@ export * from "./planning/actionPlan";
 export * from "./understanding/understanding";
 
 export * from "./intents/intent";
+export * from "./intents/IntentTypes";
 
 export * from "./messages/response";
 
@@ -29,4 +30,6 @@ export * from "./planner/PlanMetadata";
 
 export * from "./entity";
 
-export * from "./memory";
+export * from "./memory/memory";
+export * from "./memory/MemoryKeys";
+export * from "./memory/MemoryResolver";

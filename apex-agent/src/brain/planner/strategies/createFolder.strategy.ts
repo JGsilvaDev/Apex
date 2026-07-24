@@ -30,10 +30,14 @@ export function createFolderStrategy(
         {
           type: ActionTypes.CREATE_FOLDER,
           payload: {
-              name:
-                  understanding.entities.name,
-              location:
-                  understanding.entities.location
+            name:
+                understanding.entities.name,
+
+            location:
+                understanding.entities.location,
+
+            parent:
+                understanding.entities.parent
           }
         }
     ]

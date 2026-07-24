@@ -22,3 +22,5 @@ export * from "./context/SessionManager";
 
 export * from "./services/processCommand";
 
+export * from "./memory/MemoryUpdater";
+

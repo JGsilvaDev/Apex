@@ -1,5 +1,15 @@
 export interface CreateFolderExecutionPayload {
 
-    path: string;
+    name:string;
+
+    location:string;
+
+    parent?: {
+
+        name:string;
+
+        location:string;
+
+    };
 
 }

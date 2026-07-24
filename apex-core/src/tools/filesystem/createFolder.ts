@@ -1,5 +1,3 @@
-import path from "path";
-
 import {
   ApexAction,
   CreateFolderPayload,
@@ -11,12 +9,9 @@ import {
 } from "./validators/createFolder.validator";
 
 import {
-  resolveLocation,
-} from "./helpers/resolveLocation";
-
-import {
   executeFilesystemAction,
 } from "../../executor/filesystem.executor";
+
 
 export async function createFolder(
   action: ApexAction<CreateFolderPayload>,
@@ -28,20 +23,13 @@ export async function createFolder(
       action.payload
     );
 
-  const folderPath =
-    path.join(
-      resolveLocation(
-        payload.location
-      ),
-      payload.name
-    );
 
   return executeFilesystemAction(
     {
       ...action,
-      payload: {
-        path: folderPath,
-      },
+
+      payload
+
     },
     context
   );
