@@ -14,6 +14,10 @@ import {
   runAction
 } from "./executionRunner";
 
+import {
+  validatePlan
+} from "../policy/executionPolicy";
+
 
 export async function executePlan(
 
@@ -21,17 +25,17 @@ export async function executePlan(
 
 ):Promise<ExecutionReport>{
 
+  validatePlan(
+    plan
+  );
 
   const context =
     createExecutionContext();
 
-
   const startedAt =
     new Date();
 
-
   const steps: ExecutionStep[] = [];
-
 
   for(
     const action of plan.actions
